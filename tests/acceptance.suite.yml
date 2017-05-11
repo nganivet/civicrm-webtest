@@ -7,7 +7,10 @@
 class_name: AcceptanceTester
 modules:
     enabled:
-        - WebBrowser:
-            url: http://webtests.test-ubu1204-5.civicrm.org
+        - WebDriver:
+            url: %url%
             browser: chrome
         - \Helper\Acceptance
+        - ConfigHelper:
+            admin_username: %admin_username%
+            admin_password: %admin_password%

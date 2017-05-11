@@ -23,25 +23,19 @@ class AcceptanceTester extends \Codeception\Actor
    /**
     * Login & logout actions
     */
-
-  private $_amLoggedIn = false;
-
   function amLoggedIn() {
-    if (!$this->_amLoggedIn) {
-      $this->amOnPage('/');
-      $this->fillField('#edit-name', '');
-      $this->fillField('#edit-pass', '');
-      $this->click('Log in');
-      $this->see('CiviCRM');
-      $this->_amLoggedIn = true;
-    }
-  }
+    $I = $this;
+    // if no session snapshot exists - login
+    if (!$I->loadSessionSnapshot('login')) {
+      $username = $I->getConfig('admin_username');
+      $password = $I->getConfig('admin_password');
 
-  function amNotLoggedIn() {
-    if ($this->_amLoggedIn) {
-      $this->amOnPage('/user/logout');
-      $this->see('User login');
-      $this->_amLoggedIn = FALSE;
+      $I->amOnPage('/');
+      $I->fillField('#edit-name', $username);
+      $I->fillField('#edit-pass', $password);
+      $I->click('Log in');
+      $I->see('CiviCRM');
+      $I->saveSessionSnapshot('login');
     }
   }
 }

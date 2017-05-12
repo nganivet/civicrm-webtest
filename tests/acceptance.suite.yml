@@ -7,10 +7,21 @@
 class_name: AcceptanceTester
 modules:
     enabled:
-        - WebDriver:
-            url: %url%
-            browser: chrome
-        - \Helper\Acceptance
-        - ConfigHelper:
-            admin_username: %admin_username%
-            admin_password: %admin_password%
+      #- PhpBrowser
+      - WebDriver
+      - \Helper\Acceptance
+      - ConfigHelper
+      - Asserts
+      #- CiviHelper
+      #- DrupalDrush
+      #- DrupalVariable
+    config:
+      #PhpBrowser:
+        #url: %url%
+      WebDriver:
+        url: %url%
+        browser: 'chrome'
+        window_size: '1024x768'
+      ConfigHelper:
+        admin_username: %admin_username%
+        admin_password: %admin_password%

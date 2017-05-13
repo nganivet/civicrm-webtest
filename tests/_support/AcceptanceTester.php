@@ -41,11 +41,11 @@ class AcceptanceTester extends \Codeception\Actor
           $I->seeElement('body.logged-in');
           break;
         case 'wordpress':
-          $I->amOnPage('/wp-login');
-          $I->fillField('#edit-name', $cmsUsername);
-          $I->fillField('#edit-pass', $cmsPassword);
-          $I->click('Log in');
-          $I->seeElement('body.logged-in');
+          $I->amOnPage('/wp-login.php');
+          $I->fillField('#user_login', $cmsUsername);
+          $I->fillField('#user_pass', $cmsPassword);
+          $I->click('#wp-submit');
+          $I->seeElement('#adminmenumain');
           break;
         case 'joomla':
           $I->amOnPage('/');

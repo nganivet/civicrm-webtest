@@ -12,6 +12,7 @@ modules:
       - \Helper\Acceptance
       - ConfigHelper
       - Asserts
+      - Db
       #- CiviHelper
       #- DrupalDrush
       #- DrupalVariable
@@ -22,6 +23,10 @@ modules:
         url: %url%
         browser: 'chrome'
         window_size: '1024x768'
+      Db:
+        dsn: %dsn%
+        user: %db_user%
+        password: %db_pass%
       ConfigHelper:
         admin_username: %admin_username%
         admin_password: %admin_password%

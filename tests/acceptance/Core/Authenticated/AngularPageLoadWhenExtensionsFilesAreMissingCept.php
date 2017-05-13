@@ -12,6 +12,6 @@ $I->haveInDatabase('civicrm_extension', array(
   'is_active' => 1,
 ));
 
-$I->amOnPage('/civicrm/a/#/mailing/new');
+$I->amOnCiviPage('/civicrm/a/#/mailing/new');
 $I->waitForElement('#tab-mailing');
 $I->see('Mailing Name');

@@ -30,8 +30,8 @@ class AcceptanceTester extends \Codeception\Actor
     if (!$I->loadSessionSnapshot('login')) {
       $cmsUsername = $I->getConfig('cmsUsername');
       $cmsPassword = $I->getConfig('cmsPassword');
-
       $cms = $I->getConfig('cms');
+
       switch ($cms) {
         case 'drupal':
           $I->amOnPage('/user/login');
@@ -57,5 +57,30 @@ class AcceptanceTester extends \Codeception\Actor
       }
       $I->saveSessionSnapshot('login');
     }
+  }
+
+  /*
+   * Helper function to generate the correct page for each CMS
+   */
+  function amOnCiviPage($civiPage) {
+    $I = $this;
+    $cms = $I->getConfig('cms');
+
+    switch ($cms) {
+      case 'drupal':
+        // Assumes Clean URLs
+        $page = $civiPage;
+        break;
+      case 'wordpress':
+        $wpCiviPage = str_replace('%2F', '/', $civiPage);
+        $wpCiviPage = str_replace('?', '&', $wpCiviPage);
+        $page = '/wp-admin/admin.php?page=CiviCRM&q=' . $wpCiviPage;
+        break;
+      case 'joomla':
+        $joomlaCiviPage = str_replace('?', '&', $civiPage);
+        $page = '/administrator/?option=com_civicrm&task=' . $joomlaCiviPage;
+        break;
+    }
+    $I->amOnPage("$page");
   }
 }

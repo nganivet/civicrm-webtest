@@ -5,7 +5,7 @@
   $I = new AcceptanceTester($scenario);
   $I->amLoggedIn();
   
-  $I->amOnPage('/civicrm/contact/view?reset=1&cid=3&selectedChild=contribute');
+  $I->amOnCiviPage('/civicrm/contact/view?reset=1&cid=3&selectedChild=contribute');
   $I->waitForElement('#Search');
   $I->seeElement('#contribution_recur-1');
   

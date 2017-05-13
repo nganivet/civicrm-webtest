@@ -3,7 +3,7 @@
 $I = new AcceptanceTester($scenario);
 $I->amLoggedIn();
 
-$I->amOnPage('civicrm/contact/search?reset=1');
+$I->amOnCiviPage('civicrm/contact/search?reset=1');
 $I->see('Find Contacts');
 $I->see('Edit Search Criteria');
 

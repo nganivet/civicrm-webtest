@@ -6,7 +6,7 @@
   $I = new AcceptanceTester($scenario);
   $I->amLoggedIn();
   
-  $I->amOnPage('/civicrm/event/search?reset=1');
+  $I->amOnCiviPage('/civicrm/event/search?reset=1');
   $I->submitForm('#Search',[]);
   $I->see('Results');
   

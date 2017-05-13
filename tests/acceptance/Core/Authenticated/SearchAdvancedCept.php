@@ -3,7 +3,7 @@
 $I = new AcceptanceTester($scenario);
 $I->amLoggedIn();
 
-$I->amOnPage('civicrm/contact/search/advanced?reset=1');
+$I->amOnCiviPage('civicrm/contact/search/advanced?reset=1');
 $I->see('Advanced Search');
 $I->see('Search Criteria');
 

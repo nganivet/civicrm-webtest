@@ -25,16 +25,36 @@ class AcceptanceTester extends \Codeception\Actor
     */
   function amLoggedIn() {
     $I = $this;
+
     // if no session snapshot exists - login
     if (!$I->loadSessionSnapshot('login')) {
-      $username = $I->getConfig('admin_username');
-      $password = $I->getConfig('admin_password');
+      $cmsUsername = $I->getConfig('cmsUsername');
+      $cmsPassword = $I->getConfig('cmsPassword');
 
-      $I->amOnPage('/');
-      $I->fillField('#edit-name', $username);
-      $I->fillField('#edit-pass', $password);
-      $I->click('Log in');
-      $I->see('CiviCRM');
+      $cms = $I->getConfig('cms');
+      switch ($cms) {
+        case 'drupal':
+          $I->amOnPage('/user/login');
+          $I->fillField('#edit-name', $cmsUsername);
+          $I->fillField('#edit-pass', $cmsPassword);
+          $I->click('Log in');
+          $I->seeElement('body.logged-in');
+          break;
+        case 'wordpress':
+          $I->amOnPage('/wp-login');
+          $I->fillField('#edit-name', $cmsUsername);
+          $I->fillField('#edit-pass', $cmsPassword);
+          $I->click('Log in');
+          $I->seeElement('body.logged-in');
+          break;
+        case 'joomla':
+          $I->amOnPage('/');
+          $I->fillField('#edit-name', $cmsUsername);
+          $I->fillField('#edit-pass', $cmsPassword);
+          $I->click('Log in');
+          $I->seeElement('body.logged-in');
+          break;
+      }
       $I->saveSessionSnapshot('login');
     }
   }

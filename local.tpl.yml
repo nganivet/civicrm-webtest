@@ -1,6 +1,8 @@
 url: http://webtests.example.org
-admin_username: my_username
-admin_password: my_password
+browser: myBrowser
+cms: myCms
+adminUsername: myUsername
+adminPassword: myPassword
 dsn: mysql:host=my_host;dbname=my_database
-db_user: my_database_user
-db_pass: my_database_password
+dbUser: myDatabaseUser
+dbPass: myDatabaseUassword

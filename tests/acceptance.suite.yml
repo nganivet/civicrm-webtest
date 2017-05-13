@@ -1,13 +1,12 @@
 # Codeception Test Suite Configuration
 #
 # Suite for acceptance tests.
-# Perform tests in browser using the WebDriver or PhpBrowser.
-# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+# CiviCRM Webtest only use WebDrivers with either Selenium or PhantomJS
+# PHP Browser isn't sufficient for deterministic tests in CiviCRM
 
 class_name: AcceptanceTester
 modules:
     enabled:
-      #- PhpBrowser
       - WebDriver
       - \Helper\Acceptance
       - ConfigHelper
@@ -17,16 +16,14 @@ modules:
       #- DrupalDrush
       #- DrupalVariable
     config:
-      #PhpBrowser:
-        #url: %url%
-      WebDriver:
+      WebDriver: # http://codeception.com/docs/modules/WebDriver
         url: %url%
-        browser: 'chrome'
-        window_size: '1024x768'
-      Db:
-        dsn: %dsn%
-        user: %db_user%
-        password: %db_pass%
+        browser: %browser%
       ConfigHelper:
-        admin_username: %admin_username%
-        admin_password: %admin_password%
+        cms: %cms%
+        cmsUsername: %cmsUsername%
+        cmsPassword: %cmsPassword%
+      Db: # http://codeception.com/docs/modules/Db
+        dsn: %dsn%
+        user: %dbUser%
+        password: %dbPass%

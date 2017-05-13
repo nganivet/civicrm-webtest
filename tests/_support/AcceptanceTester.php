@@ -48,11 +48,11 @@ class AcceptanceTester extends \Codeception\Actor
           $I->seeElement('body.logged-in');
           break;
         case 'joomla':
-          $I->amOnPage('/');
-          $I->fillField('#edit-name', $cmsUsername);
-          $I->fillField('#edit-pass', $cmsPassword);
+          $I->amOnPage('/administrator/');
+          $I->fillField('#mod-login-username', $cmsUsername);
+          $I->fillField('#mod-login-password', $cmsPassword);
           $I->click('Log in');
-          $I->seeElement('body.logged-in');
+          $I->seeElement('body.admin');
           break;
       }
       $I->saveSessionSnapshot('login');

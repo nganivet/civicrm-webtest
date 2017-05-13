@@ -20,6 +20,6 @@ This repository contains Web Tests for CiviCRM.
     ```
     * Run a single Acceptance test, e.g. the Basic Search test, with
         ``` 
-        codecept run tests/acceptance/Core/Authenticated/BasicSearchCept.php
+        codecept run tests/acceptance/Core/Authenticated/SearchBasicCept.php
         ```
 * [Write tests and share them!](http://codeception.com/docs/03-AcceptanceTests)
